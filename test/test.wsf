@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Shift_JIS" standalone="yes" ?>
+<package>
+  <comment>CScript //Job:A1 test.wsf</comment>
+  <job id="A1">
+	  <script language="JScript" src="../lib/WSHF.js"></script>
+	  <script language="JScript">
+	    $.p('A1');
+	    $.pkill("notepad.exe");
+	  </script>
+  </job>
+</package>
