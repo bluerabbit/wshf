@@ -7,8 +7,9 @@
 	  -->
 	  <script language="JScript" src="http://wshf.googlecode.com/svn/trunk/lib/WSHF.js"></script>
 	  <script language="JScript">
+	  <![CDATA[
 	    $.p('A1');
-	    $.pkill("notepad.exe");
+	  ]]>
 	  </script>
   </job>
 </package>
