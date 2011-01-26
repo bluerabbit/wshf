@@ -1,5 +1,7 @@
 (function(){
-eval($.cd(LIB_DIR).load(["Oo4o.js"]));
+
+eval($.load(["Oo4o.js"]));
+
 with (JSpec('Oo4o.js')) {
   before_each (function(){
     this.oo4o = new Oo4o("scott", "tiger", "orcl");
@@ -14,4 +16,5 @@ with (JSpec('Oo4o.js')) {
     ret.should_equal(1);
   });
 }
+
 })();
