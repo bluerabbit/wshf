@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="Shift_JIS" standalone="yes" ?>
+<package>
+  <comment>CScript //Job:A1 autotest.wsf</comment>
+  <job id="A1">
+      <script language="JScript" src="http://wshf.googlecode.com/svn/trunk/lib/WSHF.js"></script>
+      <script language="JScript" src="http://wshf.googlecode.com/svn/trunk/lib/jspec.js"></script>
+      <script language="JScript" src="http://wshf.googlecode.com/svn/trunk/lib/jspecReport.js"></script>
+      <script language="JScript">
+    <![CDATA[
+        $.restartCscript();
+        var SPEC_DIR = $.cd().getwd();
+        $.cd('../lib');
+        var runCnt = 1;
+        $.watchr(SPEC_DIR, "*_spec.js", function (file) {
+            try {
+               eval($.load([file.Path]));
+                $.print('[' + runCnt + '] ******************************************');
+                runCnt++;
+                    var start = new Date()
+                var result = JSpecManager.run(jspecReport);
+                $.print('Finished in ' + ((new Date() - start)%1000) + ' seconds');
+            } catch(e) {
+                $.print(file.Path);
+                $.print(e.description);
+            }
+            JSpecManager.suites = [];
+        });
+      ]]>
+      </script>
+  </job>
+</package>

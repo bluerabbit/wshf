@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="Shift_JIS" standalone="yes" ?>
+<package>
+  <comment>CScript //Job:A1 spec.wsf</comment>
+  <job id="A1">
+      <script language="JScript" src="http://wshf.googlecode.com/svn/trunk/lib/WSHF.js"></script>
+      <script language="JScript" src="http://wshf.googlecode.com/svn/trunk/lib/jspec.js"></script>
+      <script language="JScript" src="http://wshf.googlecode.com/svn/trunk/lib/jspecReport.js"></script>
+      <script language="JScript">
+      <![CDATA[
+        $.restartCscript();
+        var SPEC_DIR = $.getwd();
+        $.cd("../lib");
+        try {
+            if ($.arguments.length != 0) {
+                eval($.load(SPEC_DIR + '\\'+ $.arguments));
+            } else {
+                var specFiles = $.find(SPEC_DIR, "*_spec.js");
+                for (var i=0; i < specFiles.length; i++){
+                    var spec = specFiles[i];
+                    if (spec.Path == $.scriptFullName) continue;
+                    if ($.getExtName(spec.Name) == "js") {
+                        eval($.load(spec.Path));
+                    }
+                }
+            }
+        } catch(e) {
+          $.print(e.description);
+        }
+
+        JSpecManager.run(jspecReport);
+
+        if ($.arguments.length == 0) {
+            $.pause();
+        }
+      ]]>
+      </script>
+  </job>
+</package>
